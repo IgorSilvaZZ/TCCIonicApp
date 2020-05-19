@@ -1,0 +1,40 @@
+<ion-content>
+
+    <div class="imageLogo">
+      <img src="../assets/img/cdastrarfundo.png">
+    </div>
+      <div class="login-form">
+      <ion-title></ion-title>
+        <ion-item class="intens">
+          <div class="inputs">
+             <ion-input type="text" placeholder="Nome" [(ngModel)]="name"></ion-input>
+          </div>
+        </ion-item>
+        <div class="intens">
+          <ion-label style="color: #b2bec3; margin-left: 8%; margin-top: 10%;width: 10%;">Sexo</ion-label>
+          <ion-select interface="popover" [(ngModel)]="sexo" style="width: 90%; margin-left: 8%;color: #b2bec3;">
+            <ion-select-option value="Masculino">Masculino</ion-select-option>
+            <ion-select-option value="Feminino">Feminino</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="intens">
+            <ion-label position="floating" style="color: #b2bec3; margin-left: 10%; margin-top: 10%;width: 10%;">MM/DD/YYYY</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" min="1920-12-31" max="2020-03-29" [(ngModel)]="dataNasc" style="color: #b2bec3;"></ion-datetime>
+        </div>
+        <ion-item class="intens">
+          <div class="inputs"> 
+              <ion-input type="text" placeholder="Email" [(ngModel)]="email"></ion-input>
+          </div>
+        </ion-item>
+        <ion-item class="intens">
+            <div class="inputs"> 
+                <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+            </div>
+          </ion-item> 
+          <!-- <ion-button class="btnfoto" (click)="presentActionSheet()">Take Picture</ion-button> -->
+          
+      <ion-button class="btnlogar" (click)="tryRegister()" [disabled]="disabledButton">Cadastrar</ion-button>
+  </div>
+  
+  </ion-content>
+  

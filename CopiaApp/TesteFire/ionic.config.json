@@ -1,0 +1,7 @@
+{
+  "name": "TesteFire",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

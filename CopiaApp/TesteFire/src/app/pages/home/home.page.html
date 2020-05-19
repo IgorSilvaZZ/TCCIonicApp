@@ -1,0 +1,111 @@
+<!-- <ion-header>
+  <ion-toolbar color="success">
+    <ion-title>Bem vindo {{nome}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="light" (click)="Logout()">
+        <ion-icon slot="icon-only" name="exit"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content> -->
+
+<ion-menu side="start" content-id="main-content">
+  <ion-header class="titulo">
+    <ion-toolbar>
+        <ion-item id="topo">
+           <!--  <img id="iconeuser" slot="start" src="http://192.168.0.19/CopiaApp/TesteFire/api/{{image}}" width="70" height="70"> -->
+          <ion-avatar slot="start" height="70">
+            <img src="http://192.168.0.19/CopiaApp/TesteFire/api/{{image}}">
+          </ion-avatar>
+          <ion-label style="margin-left: 5%;">{{email}}</ion-label>
+        </ion-item>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list class="lista">
+      <ion-item>
+        <img id="icone" slot="start" src="../assets/img/sydney-opera-house.png" width="23" height="23">
+        <ion-label>Home</ion-label>
+      </ion-item>
+      <ion-item>
+          <img id="icone" slot="start" src="../assets/img/telegrama.png" width="23" height="23">
+          <ion-label>Ongs</ion-label>
+      </ion-item>
+      <ion-item>
+          <img id="icone" slot="start" src="../assets/img/favorito.png" width="23" height="23">
+          <ion-label>Favoritos</ion-label>
+      </ion-item>
+      <ion-item (click)="OpenCrud(id)">
+          <img id="icone" slot="start" src="../assets/img/configuracoes.png" width="23" height="23">
+          <ion-label>Configurações</ion-label>
+      </ion-item>
+      <ion-item (click)="Logout()">
+          <img id="icone" slot="start" src="../assets/img/sair.png" width="23" height="23">
+          <ion-label>Sair</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <img src="../assets/img/doe+SimpleLogoTransparenteBlue.png" id="logo">
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content pullingIcon="arrow-dropdown"></ion-refresher-content>
+      </ion-refresher>
+      <!-- <img src="http://10.42.0.208/CopiaApp/TesteFire/api/{{image}}"> -->
+      <ion-input type="text" placeholder="Pesquisar" id="search">
+        <img src="../assets/img/procurar.png" slot="start" width="23" height="23" style="margin-left: 2%;">
+      </ion-input>
+      <ion-slides [options]="slideOpts">
+        <ion-slide *ngFor="let campanha of campanhas">
+          <img src="../assets/img/billie.jpg" style="border-radius: 5%;">  
+        </ion-slide> 
+      </ion-slides>
+
+      <ion-card *ngFor="let ong of ongs" style="margin-top: 2%;border-radius: 5%;">
+        <ion-card-header>
+          <ion-card-subtitle style="border: none;">
+              <ion-item lines="none">
+                  <ion-avatar slot="start" id="avatarOng"> 
+                      <img src="{{ong.fotoOng}}">
+                  </ion-avatar>
+                  <ion-label style="margin-left: 3%;">
+                    <h3>{{ong.nomeOng}}</h3>
+                  </ion-label>
+                </ion-item>
+                <ion-item lines="none" style="margin-left: 70%;margin-top: -18%;">
+                  <span class="tw-heart-box">
+                    <input type="checkbox" name="name" value="">
+                    <span class="tw-heart"></span>
+                  </span>
+                </ion-item>
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="imgONG">
+            <img src="{{ong.fotoOng}}">
+          </div>
+          <div class="slides">
+              <ion-slides [options]="slideOpts">
+                  <ion-slide *ngFor="let campanha of campanhas" style="border: 2px solid #2e4094;">
+                    <img src="../assets/img/billie.jpg">  
+                  </ion-slide> 
+                </ion-slides>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+  </ion-content>
+</div>

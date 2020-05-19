@@ -1,0 +1,64 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>{{nome}}</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <div class="topo">
+      <!-- <ion-title style="float: right;color: #2e4094;margin-right: 5%;"(click)="BackHome()">SALVAR</ion-title> -->
+      <ion-title style="margin-left: 8%;">Editar Perfil</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <div style="margin-left: 37%;opacity: 0.9;">
+    <img id="iconeuser" [src]="foto" width="90" height="90" style="margin-top: 5%;border-radius: 50%;">
+  </div>
+  <div style="z-index: 999999;margin-left: 44%;position: absolute; margin-top: -18%;">
+      <img src="../assets/img/camera.png" width="40" height="40" (click)="presentActionSheet()">
+  </div>
+  
+  <div class="update-form">
+    <ion-item>
+      <ion-label position="stacked" style="font-size: 20px;color: #636e72;">Nome</ion-label>
+      <ion-input type="text" style="font-size: 17px;color: #636e72;" [(ngModel)]="name"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked" style="font-size: 20px;color: #636e72;">Sexo</ion-label>
+    </ion-item>
+    <div style="margin-top: -2%;border-bottom: 2px solid #dcdde1;">
+      <ion-select interface="popover" [(ngModel)]="sexo" style="margin-left: 4%;margin-top:  -2%;color: #636e72;">
+        <ion-select-option value="Masculino">Masculino</ion-select-option>
+        <ion-select-option value="Feminino">Feminino</ion-select-option>
+      </ion-select>
+      <!-- <ion-input type="text" style="font-size: 17px;color: #636e72;"></ion-input> -->
+    </div>
+    <ion-item lines="none">
+      <ion-label position="stacked" style="margin-top: -5%;font-size: 20px;color: #636e72;">Data de Nascimento</ion-label>
+    </ion-item>
+    <div style="margin-top: -2%;border-bottom: 2px solid #dcdde1;">
+      <!-- <ion-label position="floating" style="color: #636e72;margin-left: 5%;margin-top: 15%;">MM/DD/YYYY</ion-label> -->
+      <ion-datetime displayFormat="DD/MM/YYYY" min="1920-12-31" max="2012-12-31" style="margin-top: -2%;margin-left: 5%;color: #636e72;" [(ngModel)]="dataNasc"></ion-datetime>
+    </div>
+    <ion-item style="margin-top: 2%;">
+      <ion-label position="stacked" style="font-size: 20px;color: #636e72;">Email</ion-label>
+      <ion-input type="text" style="font-size: 17px;color: #636e72;" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <!-- <ion-item style="margin-top: 2%;">
+      <ion-label position="stacked" style="font-size: 20px;color: #636e72;">Senha</ion-label>
+      <ion-input type="password" style="font-size: 17px;color: #636e72;"></ion-input>
+    </ion-item> -->
+
+    <ion-button class="btnlogar" (click)="CrudAction()" [disabled]="disabledButton">Salvar</ion-button>
+
+  </div>
+
+</ion-content>
+ 

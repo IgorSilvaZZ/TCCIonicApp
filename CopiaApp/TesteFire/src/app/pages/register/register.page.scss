@@ -1,0 +1,63 @@
+@font-face {
+    font-family: Open Sans Condensed;
+    src: url("src/assets/font/OpenSansCondensed-Bold.ttf");
+}
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: Open Sans Condensed;
+}
+ion-content{
+    --background: white; //#45aaf2; //rgb(45,132,160);
+}
+.login-form{
+    padding: 80px 40px;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%,-50%);
+    width: 80%;
+    height: 65%;
+    border: none;
+    background: none;
+}
+.login-form ion-title{
+    text-align: center;
+    margin-bottom: 15%;
+}
+.intens{
+    --background: none;
+    border-bottom: 3px solid #747d8c;
+}
+
+.inputs ion-input{
+    font-size: 15px;
+    color: #636e72;
+    width: 100%;
+    outline: none;
+    text-decoration: none;
+    --placeholder-color: #636e72;
+}
+
+.btnlogar{
+    margin-top: 10%;
+    display: block;
+    width: 100%;
+    height: 15%;
+    border: none;
+    --background: #5352ed;
+    color: #fff;
+    outline: none;
+    transition: .5s;
+}
+.btnfoto{
+    margin-top: 10%;
+    display: block;
+    width: 100%;
+    height: 15%;
+    --background: none;
+    border: 2px solid #ccc;
+    color: #5352ed;
+    outline: none;
+}
