@@ -24,7 +24,8 @@ export class HomePage implements OnInit {
   start : number = 0;
   heart: string = "../assets/img/fav.png";
   foto: string = "../assets/img/fav.png";
-  heart2: string = "../assets/img/fav2.png"; 
+  heart2: string = "../assets/img/fav2.png";
+  click:boolean;
 
 
   campanhas : string[] = ["Unicef","ACCD","Teleton","Cedesp"];
@@ -84,7 +85,7 @@ export class HomePage implements OnInit {
           event.target.complete();
       });
     },500);
-  }
+  } 
 
   async LoadOngs(){
 
@@ -125,6 +126,29 @@ export class HomePage implements OnInit {
 
   }
 
+  /* AddFav(user, ong){
+    return new Promise(resolve => {
+      let body = {
+        aski: 'proses_addfavorito',
+        usuario: user,
+        ong: ong
+      }
+
+      this.acssPvrs.postData(body,'proses_api.php').subscribe((res:any)=>{
+        if(res.sucess==true){
+          console.log("Adicionado ou Deletado");
+        }else{
+          console.log("Nao adicionado aos favoritos");
+        }
+      },(err)=>{
+        console.log(err);
+        }
+
+      );
+
+    });
+  } */
+
   async delData(){
 
   }
@@ -142,6 +166,10 @@ export class HomePage implements OnInit {
 
   OpenCrud(a){
     this.router.navigate(['/crud/'+a]);
+  }
+
+  OpenFav(){
+    this.router.navigate(['/favoritos/']);
   }
 
 }

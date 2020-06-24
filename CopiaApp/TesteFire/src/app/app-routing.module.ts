@@ -27,6 +27,14 @@ const routes: Routes = [
     path: 'chat',
     loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
   },
+  {
+    path: 'favoritos',
+    loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule)
+  },
+  {
+    path: 'ong',
+    loadChildren: () => import('./pages/ong/ong.module').then( m => m.OngPageModule)
+  },
 ];
 
 @NgModule({

@@ -146,26 +146,47 @@
             $data = date("Y-m-d",strtotime($postjson['dataNasc']));
             $diretorio = "images/img_user".$datenowxxx.".jpg";
 
-            $entry = base64_decode($postjson['images']);
-            $img = imagecreatefromstring($entry);
-
-            imagejpeg($img, $diretorio);
-            imagedestroy($img);
-
-            /*  $diretorio = "images/usuario.png"; */
+            if($postjson['images'] == null){
                 
-            /* $password = md5($postjson['password']); */
-            $update = mysqli_query($mysqli, "update tbUsuario set 
-            emailUsuario =  '$postjson[email]',
-            nomeUsuario =  '$postjson[name]',
-            dataNascUsuario = '$data',
-            sexoUsuario = '$postjson[sexo]',
-            fotoUsuario = '$diretorio' where idUsuario = '$postjson[id]'");
+                $logindata = mysqli_fetch_array(mysqli_query($mysqli,"select fotoUsuario from tbUsuario where idUsuario = '$postjson[id]'"));
 
-            if($update){
-                $result = json_encode(array('sucess'=>true, 'msg'=>'Atualizado com Sucesso'));
+                $imgAntiga = $logindata['fotoUsuario'];
+
+                $update = mysqli_query($mysqli, "update tbUsuario set 
+                emailUsuario =  '$postjson[email]',
+                nomeUsuario =  '$postjson[name]',
+                dataNascUsuario = '$data',
+                sexoUsuario = '$postjson[sexo]',
+                fotoUsuario = '$imgAntiga' where idUsuario = '$postjson[id]'");
+
+                if($update){
+                    $result = json_encode(array('sucess'=>true, 'msg'=>'Atualizado com Sucesso'));
+                }else{
+                    $result = json_encode(array('sucess'=>false, 'msg'=>$mysqli->error));
+                }
+
             }else{
-                $result = json_encode(array('sucess'=>false, 'msg'=>$mysqli->error));
+                $entry = base64_decode($postjson['images']);
+                $img = imagecreatefromstring($entry);
+                imagejpeg($img, $diretorio);
+                imagedestroy($img);
+
+                /*  $diretorio = "images/usuario.png"; */
+                    
+                /* $password = md5($postjson['password']); */
+                $update = mysqli_query($mysqli, "update tbUsuario set 
+                emailUsuario =  '$postjson[email]',
+                nomeUsuario =  '$postjson[name]',
+                dataNascUsuario = '$data',
+                sexoUsuario = '$postjson[sexo]',
+                fotoUsuario = '$diretorio' where idUsuario = '$postjson[id]'");
+
+                if($update){
+                    $result = json_encode(array('sucess'=>true, 'msg'=>'Atualizado com Sucesso'));
+                }else{
+                    $result = json_encode(array('sucess'=>false, 'msg'=>$mysqli->error));
+                }
+
             }
 
         echo $result;
@@ -194,6 +215,41 @@
         }
     
         echo $result;
+
+    }
+
+    elseif($postjson['aski'] == "proses_addfavorito"){
+
+        $check = mysqli_fetch_array(mysqli_query($mysqli,"select idUsuario from tbFavoritos where idOng = '$postjson[ong]'"));
+
+       
+        if($check['idUsuario'] == $postjson['ong']){
+
+            $query = mysqli_query($mysqli, "delete from tbFavoritos where idOng = '$postjson[ong]' and idUsuario =  '$postjson[usuario]'
+            ");
+
+             if($query){
+                $result = json_encode(array('sucess'=>true, 'msg'=>'Deletado com Sucesso'));
+            }else{
+                $result = json_encode(array('sucess'=>false, 'msg'=>$mysqli->error));
+            }
+            
+            echo $result;
+
+        }else{
+            $query = mysqli_query($mysqli, "insert into tbFavoritos set 
+                idOng =  '$postjson[ong]',
+                idUsuario =  '$postjson[usuario]'
+            ");
+
+            if($query){
+                $result = json_encode(array('sucess'=>true, 'msg'=>'Adicionado com Sucesso'));
+            }else{
+                $result = json_encode(array('sucess'=>false, 'msg'=>$mysqli->error));
+            }
+        
+            echo $result;
+        }
 
     }
    

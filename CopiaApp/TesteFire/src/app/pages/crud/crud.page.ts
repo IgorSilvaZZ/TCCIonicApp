@@ -20,7 +20,7 @@ export class CrudPage implements OnInit {
   dataNasc : string = "";
   image: string = "";
   foto: string = "";
-  cameraData: string;
+  cameraData: string = null;
   base64Image: string;
 
   disableButton;
@@ -161,7 +161,6 @@ export class CrudPage implements OnInit {
           email: this.email,
           sexo: this.sexo,
           dataNasc: this.dataNasc,
-          /* password: this.password, */
           images: this.cameraData
         }
 
